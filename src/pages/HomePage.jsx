@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import BookingSummary from '../components/BookingSummary';
 import Header from '../components/Header';
-import { servicePrices,therapists,timeSlots,services,durations } from '../utils/mockData';
+import { servicePrices, therapists, timeSlots, services, durations } from '../utils/mockData';
 import TherapistCard from '../components/TherapistsCard';
+import HeaderNameTitle from '../components/HeaderNameTitle';
 
 
 const HomePage = () => {
+
     const [selectedTherapist, setSelectedTherapist] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [bookings, setBookings] = useState({});
@@ -110,7 +112,7 @@ const HomePage = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-            <div className="container mx-auto px-4 py-6 lg:px-8 lg:py-10 max-w-6xl">
+            <div className="container mx-auto px-4 py-6 max-w-6xl">
                 {/* Header */}
                 <Header />
 
@@ -124,11 +126,9 @@ const HomePage = () => {
 
                             <div className="space-y-6 lg:space-y-8">
                                 {/* Client Information */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+                                <div className="grid input-form">
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Your Name
-                                        </label>
+                                        <HeaderNameTitle name="Your Name" />
                                         <input
                                             type="text"
                                             value={formData.clientName}
@@ -139,9 +139,10 @@ const HomePage = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Phone Number
-                                        </label>
+
+                                        <HeaderNameTitle name="Phone Number" />
+
+
                                         <input
                                             type="tel"
                                             value={formData.clientPhone}
@@ -154,11 +155,9 @@ const HomePage = () => {
                                 </div>
 
                                 {/* Service and Duration */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+                                <div className="grid input-form">
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Service Type
-                                        </label>
+                                        <HeaderNameTitle name="Service Type" />
                                         <select
                                             value={formData.serviceType}
                                             onChange={(e) => handleInputChange('serviceType', e.target.value)}
@@ -174,9 +173,9 @@ const HomePage = () => {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Session Duration
-                                        </label>
+                                        <HeaderNameTitle name="Session Duration" />
+
+
                                         <select
                                             value={formData.sessionDuration}
                                             onChange={(e) => handleInputChange('sessionDuration', e.target.value)}
@@ -204,12 +203,11 @@ const HomePage = () => {
 
                                 {/* Therapist Selection */}
                                 <div>
-                                    <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-4">
-                                        Choose Your Therapist
-                                    </label>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 lg:gap-5">
+                                    <HeaderNameTitle name="Choose Your Therapist" />
+
+                                    <div className="custom-grid">
                                         {therapists.map(therapist => (
-                                            <TherapistCard therapist={therapist} selectedTherapist={selectedTherapist} handleTherapistSelect={handleTherapistSelect}/>
+                                            <TherapistCard therapist={therapist} selectedTherapist={selectedTherapist} handleTherapistSelect={handleTherapistSelect} />
                                         ))}
                                     </div>
                                 </div>
@@ -217,9 +215,8 @@ const HomePage = () => {
                                 {/* Date and Time Selection */}
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Preferred Date
-                                        </label>
+                                        <HeaderNameTitle name="Preferred Date" />
+
                                         <input
                                             type="date"
                                             value={formData.appointmentDate}
@@ -230,10 +227,8 @@ const HomePage = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm lg:text-base font-semibold text-gray-700 mb-2">
-                                            Available Time Slots
-                                        </label>
-                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-4 gap-2 lg:gap-3">
+                                        <HeaderNameTitle name="Available Time Slots" />
+                                        <div className="time-grid">
                                             {timeSlots.map((slot, index) => {
                                                 const isAvailable = isTimeSlotAvailable(index);
                                                 const isSelected = selectedTime === slot.time;
@@ -245,10 +240,10 @@ const HomePage = () => {
                                                         onClick={() => handleTimeSelect(slot.time, index)}
                                                         disabled={!isAvailable}
                                                         className={`p-2 lg:p-3 text-xs lg:text-sm rounded-lg transition-all duration-300 font-medium ${isSelected
-                                                                ? 'bg-indigo-500 text-white shadow-lg'
-                                                                : !isAvailable
-                                                                    ? 'bg-red-500 text-white opacity-60 cursor-not-allowed'
-                                                                    : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
+                                                            ? 'bg-indigo-500 text-white shadow-lg'
+                                                            : !isAvailable
+                                                                ? 'bg-red-500 text-white opacity-60 cursor-not-allowed'
+                                                                : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
                                                             }`}
                                                     >
                                                         {slot.display}
@@ -262,14 +257,14 @@ const HomePage = () => {
                                 {/* Booking Summary */}
                                 {isFormComplete() && (
                                     <BookingSummary
-                                        services={services} 
-                                        calculateTotalPrice={calculateTotalPrice} 
-                                        durations={durations} 
+                                        services={services}
+                                        calculateTotalPrice={calculateTotalPrice}
+                                        durations={durations}
                                         therapists={therapists}
                                         formData={formData}
                                         selectedTime={selectedTime}
                                         selectedTherapist={selectedTherapist}
-                                        />
+                                    />
                                 )}
 
                                 {/* Submit Button */}
@@ -277,8 +272,8 @@ const HomePage = () => {
                                     onClick={handleSubmit}
                                     disabled={!isFormComplete()}
                                     className={`w-full p-4 lg:p-5 rounded-xl font-bold text-sm lg:text-lg tracking-wide uppercase transition-all duration-300 ${isFormComplete()
-                                            ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 hover:transform hover:-translate-y-1 hover:shadow-xl'
-                                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                        ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700 hover:transform hover:-translate-y-1 hover:shadow-xl'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                         }`}
                                 >
                                     Complete Booking

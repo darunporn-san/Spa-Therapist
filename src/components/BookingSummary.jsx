@@ -20,40 +20,38 @@ const BookingSummary = ({ services, durations, therapists, formData, calculateTo
     };
 
     return (
-        <div className="bg-indigo-50 p-4 lg:p-6 rounded-xl border border-indigo-200">
-            <h3 className="text-lg lg:text-xl font-bold text-indigo-700 mb-4">
-                Booking Summary
-            </h3>
-            <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-indigo-200">
-                    <span className="font-medium text-gray-700">Client:</span>
-                    <span className="text-gray-900">{formData.clientName}</span>
+        <div className="booking-summary">
+            <h3>Booking Summary</h3>
+            <div>
+                <div className="summary-row">
+                    <span className="summary-label">Client:</span>
+                    <span className="summary-value">{formData.clientName}</span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-indigo-200">
-                    <span className="font-medium text-gray-700">Service:</span>
-                    <span className="text-gray-900">
+                <div className="summary-row">
+                    <span className="summary-label">Service:</span>
+                    <span className="summary-value">
                         {services.find(s => s.value === formData.serviceType)?.label}
                     </span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-indigo-200">
-                    <span className="font-medium text-gray-700">Duration:</span>
-                    <span className="text-gray-900">
+                <div className="summary-row">
+                    <span className="summary-label">Duration:</span>
+                    <span className="summary-value">
                         {durations.find(d => d.value === formData.sessionDuration)?.label}
                     </span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-indigo-200">
-                    <span className="font-medium text-gray-700">Total Price:</span>
-                    <span className="text-gray-900 font-bold">${calculateTotalPrice()}</span>
+                <div className="summary-row">
+                    <span className="summary-label">Total Price:</span>
+                    <span className="summary-value bold">${calculateTotalPrice()}</span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-indigo-200">
-                    <span className="font-medium text-gray-700">Therapist:</span>
-                    <span className="text-gray-900">
+                <div className="summary-row">
+                    <span className="summary-label">Therapist:</span>
+                    <span className="summary-value">
                         {therapists.find(t => t.id === selectedTherapist)?.name}
                     </span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2">
-                    <span className="font-medium text-gray-700">Date & Time:</span>
-                    <span className="text-gray-900">
+                <div className="summary-row">
+                    <span className="summary-label">Date & Time:</span>
+                    <span className="summary-value">
                         {formatDate(formData.appointmentDate)} at {formatTime(selectedTime)}
                     </span>
                 </div>

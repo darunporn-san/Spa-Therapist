@@ -1,0 +1,161 @@
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* default 1 column */
+  gap: 0.75rem;
+  /* เท่ากับ gap-3 */
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-cols-2 */
+  gap: 0.5rem;
+  /* gap-2 */
+}
+
+.booking-summary {
+  background-color: #eef2ff;
+  /* bg-indigo-50 */
+  padding: 1rem;
+  /* p-4 */
+  border-radius: 1rem;
+  /* rounded-xl */
+  border: 1px solid #c7d2fe;
+  /* border-indigo-200 */
+}
+
+.booking-summary h3 {
+  font-weight: 700;
+  color: #3730a3;
+  /* text-indigo-700 */
+  margin-bottom: 1rem;
+  /* mb-4 */
+  font-size: 1.125rem;
+  /* text-lg */
+}
+
+.summary-row {
+  display: flex;
+  flex-direction: column;
+  /* flex-col */
+  padding-top: 0.5rem;
+  /* py-2 (แต่แบ่งครึ่งบน-ล่าง, เอาครึ่งบน) */
+  padding-bottom: 0.5rem;
+  /* py-2 */
+  border-bottom: 1px solid #c7d2fe;
+  /* border-indigo-200 */
+}
+
+/* แถวสุดท้ายไม่มีเส้นขอบล่าง */
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+/* Label เช่น "Client:" */
+.summary-label {
+  font-weight: 500;
+  /* font-medium */
+  color: #4b5563;
+  /* text-gray-700 */
+}
+
+/* ข้อความค่าต่างๆ */
+.summary-value {
+  color: #111827;
+  /* text-gray-900 */
+}
+
+/* ตัวหนาสำหรับ total price */
+.summary-value.bold {
+  font-weight: 700;
+}
+
+.input-form {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* grid-cols-1 */
+  gap: 1rem;
+  /* gap-4 = 16px */
+}
+
+/* 640px ขึ้นไป (sm) */
+@media (min-width: 640px) {
+  .custom-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns */
+  }
+
+  .summary-row {
+    flex-direction: row;
+    /* sm:flex-row */
+    justify-content: space-between;
+    /* sm:justify-between */
+    align-items: center;
+    /* sm:items-center */
+  }
+}
+
+/* 768px ขึ้นไป (md) */
+@media (min-width: 768px) {
+  .time-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* md:grid-cols-3 */
+  }
+
+  .input-form {
+    grid-template-columns: repeat(2, 1fr);
+    /* md:grid-cols-2 */
+
+  }
+}
+
+/* 1024px ขึ้นไป (lg) */
+@media (min-width: 1024px) {
+  .container {
+    padding: 2.5rem 2rem
+  }
+
+  .custom-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    gap: 1.25rem;
+    /* เท่ากับ lg:gap-5 */
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* lg:grid-cols-2 */
+    gap: 0.75rem;
+    /* lg:gap-3 */
+  }
+
+  .booking-summary h3 {
+    font-size: 1.25rem;
+    /* lg:text-xl */
+  }
+
+  .booking-summary {
+    padding: 1.5rem;
+    /* lg:p-6 */
+  }
+
+  .input-form {
+    gap: 2rem;
+    /* lg:gap-8 = 32px */
+
+  }
+}
+
+/* 1280px ขึ้นไป (xl) */
+@media (min-width: 1280px) {
+  .custom-grid {
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 columns */
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(4, 1fr);
+    /* xl:grid-cols-4 */
+  }
+}
